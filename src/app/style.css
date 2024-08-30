@@ -1,8 +1,10 @@
-button {
+.login button,
+.register button {
   color: #fff;
   background-color: #24a79a;
 }
-button:hover {
+.login button:hover,
+.register button:hover {
   background-color: #238c83;
 }
 a {
@@ -31,4 +33,101 @@ a {
 .contact-card:hover{
   background-color: #202c33;
   cursor: pointer;
+}
+.chat-container{
+  max-height: 100vh;
+  height: 93vh;
+  margin: 20px;
+  background-color: #202c33;
+  border: 1px solid #666;
+  border-radius: 10px;
+}
+.chat-container .header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  h2{
+    font-weight: 500;
+    font-size: 22px;
+  }
+  button{
+    background-color: #364750;
+    padding: 6px 15px 7px 15px;
+    border-radius: 8px;
+    border: 1px solid #666;
+  }
+  button:hover{
+    background-color: #2d3336;
+  }
+
+}
+.input-container{
+  background-color: #516470;
+  width: 100%;
+  border-radius: 20px;
+  padding: 6px;
+  input{
+    width: 100%;
+    padding: 5px 10px 7px 15px;
+    font-weight: 400;
+    outline: none;
+    margin:1px;
+    font-size: 20px;
+    background-color: transparent;
+  }
+  button{
+    border-radius: 50px;
+  }
+  button:hover{
+    background-color: #36716b;
+  }
+  .emoji:hover{
+    background-color: #36716b;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+  .EmojiPickerReact{
+    position: absolute;
+    top: -450px;
+    left: 0px;
+    background-color: #202c33;
+    border-color: #666;
+  }
+  .epr-emoji-category-label{
+    background-color: #202c33;
+  }
+  .epr-icn-search{
+    display: none;
+  }
+}
+.chat-messages{
+  padding: 10px 20px;
+  gap:10px;
+  overflow: auto;
+  max-height: 100%;
+  .message-tile{
+    display: flex;
+    align-items: center;
+    .content{
+      max-width: 50% ;
+      overflow-wrap: break-word;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+  }
+  .sended{
+    justify-content: flex-end;
+    .content{
+      background-color: #238c83;
+    }
+  }
+  .received{
+    justify-content: flex-start;
+    .content{
+      background-color: #434a4d;
+    }
+  }
+  
 }

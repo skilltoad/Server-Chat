@@ -7,8 +7,12 @@ import { ToastContainer, toast, ToastPosition } from "react-toastify";
 import Logo from "../../../public/Logo.jpg";
 import "@/app/style.css";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { LOGIN } from "@/utils/urlHelper";
+
 const LogIn = () => {
   const router = useRouter();
+
   const toastOptions = {
     position: "bottom-right" as ToastPosition,
     autoClose: 8000,
@@ -16,34 +20,57 @@ const LogIn = () => {
     draggable: true,
     theme: "dark",
   };
-  const [values, setValues] = useState({
-    username: "",
+
+  const [user, setUser] = useState({
+    name: "",
     password: "",
   });
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      router.push("/chat");
+    }
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+    setUser({ ...user, [event.target.name]: event.target.value });
   };
+
   const handleValidation = () => {
-    const { password, username } = values;
-    if (username.length < 3) {
-      toast.error("Enter a valid username", toastOptions);
+    if (user.name.length < 3) {
+      toast.error("Enter a valid email", toastOptions);
       return false;
     }
-    if (password.length < 8) {
+    if (user.password.length < 8) {
       toast.error("Enter a valid password", toastOptions);
       return false;
     }
-
     return true;
   };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (handleValidation()) {
-      router.push("/chat");
-      // const { email, username, password } = values;
+      try {
+        const response = await axios.post(LOGIN, user);
+        if (response && response.data.status === false) {
+          toast.error(response.data.msg, toastOptions);
+        }
+        if (response && response.data.status) {
+          localStorage.setItem(
+            "chat-app-user",
+            JSON.stringify(response.data.user)
+          );
+          router.push("/chat");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
+      // router.push("/chat");
+      // const { email, email, password } = user;
       // const { data } = await axios.post(registerRoute, {
-      //   username,
+      //   email,
       //   email,
       //   password,
       // });
@@ -60,27 +87,39 @@ const LogIn = () => {
     }
   };
   return (
-    <form onSubmit={(event) => handleSubmit(event)}>
+    <form className="login" onSubmit={(event) => handleSubmit(event)}>
       <div className="flex flex-col items-center justify-center h-screen p-5">
         <div className="flex justify-center items-center mb-4 gap-2.5">
-          <Image src={Logo} alt="" width={50} style={{borderRadius:'30px'}}/>
+          <Image
+            src={Logo}
+            alt=""
+            width={50}
+            style={{ borderRadius: "30px" }}
+          />
           <h1 className="text-2xl font-bold ">User Login</h1>
         </div>
-        <div className="w-full max-w-md px-5 py-8 shadow-md rounded-lg" style={{backgroundColor:'#202c33'}}>
-          <label htmlFor="username">Username</label>
+        <div
+          className="w-full max-w-md px-5 py-8 shadow-md rounded-lg"
+          style={{ backgroundColor: "#202c33" }}
+        >
+          <label htmlFor="email">Username</label>
           <input
+            style={{ color: "black" }}
             type="text"
             placeholder="Username"
-            name="username"
+            name="name"
+            value={user.name}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             onChange={(e) => handleChange(e)}
             required
           />
           <label htmlFor="password">Password</label>
           <input
+            style={{ color: "black" }}
             type="password"
             placeholder="Password"
             name="password"
+            value={user.password}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             onChange={(e) => handleChange(e)}
             required
@@ -89,7 +128,7 @@ const LogIn = () => {
             Login
           </button>
           <span>
-            Don&apos;t have an account? <Link href="/sign-up">REGISTER</Link>
+            Don&apos;t have an account? <Link href="/register">REGISTER</Link>
           </span>
         </div>
       </div>

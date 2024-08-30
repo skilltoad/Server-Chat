@@ -35,7 +35,7 @@ const Contacts = () => {
             />
             <h1 style={{fontSize:'20px'}}>Server 1</h1>
           </div>
-          <div
+          {/* <div
             className="contact-card flex items-center gap-4 px-4 py-10"
             style={{ maxHeight: "80px", width:'100%', borderBottom:'1px solid #666'}}
           >
@@ -46,7 +46,7 @@ const Contacts = () => {
               style={{ borderRadius: "30px" }}
             />
             <h1 style={{fontSize:'20px'}}>Server 2</h1>
-          </div>
+          </div> */}
         </Col>
       </Row>
       <hr style={{ borderColor: "#666" }} />
