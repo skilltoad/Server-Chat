@@ -32,7 +32,7 @@ const ChatInput: React.FC<ChatInputProps> = ({handleSendMsg}) => {
           style={{ display: "flex", flex: "0.5", justifyContent: "center" }}
           onClick={handleEmojisvisibility}
         >
-          <SmileOutlined style={{fontSize:'20px'}}/>
+          <SmileOutlined style={{fontSize:'18px'}}/>
           {showEmojis && <Picker onEmojiClick={handleEmojiClick} />}
         </div>
         <div style={{ flex: "10" }}>
@@ -44,7 +44,7 @@ const ChatInput: React.FC<ChatInputProps> = ({handleSendMsg}) => {
           />
         </div>
         <button type="submit" style={{ flex: "0.5" }}>
-          <SendOutlined style={{fontSize:'22px', padding:'2px 0 0 5px'}}/>
+          <SendOutlined style={{fontSize:'18px', padding:'2px 0 0 5px'}}/>
         </button>
       </form>
     </div>

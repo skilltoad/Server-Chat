@@ -80,23 +80,6 @@ const Register = () => {
         console.log(error);
       }
 
-      // router.push("/chat");
-      // const { email, name, password } = user;
-      // const { data } = await axios.post(registerRoute, {
-      //   name,
-      //   email,
-      //   password,
-      // });
-      // if (data.status === false) {
-      //   toast.error(data.msg, toastOptions);
-      // }
-      // if (data.status === true) {
-      //   localStorage.setItem(
-      //     process.env.REACT_APP_LOCALHOST_KEY,
-      //     JSON.stringify(data.user)
-      //   );
-      //   navigate("/");
-      // }
     }
   };
 
@@ -116,12 +99,12 @@ const Register = () => {
           className="w-full max-w-md px-5 py-8 shadow-md rounded-lg"
           style={{ backgroundColor: "#202c33" }}
         >
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Username</label>
           <input
             style={{ color: "black" }}
             type="text"
             className="w-full p-2 border border-gray-300 rounded mb-4"
-            placeholder="Enter Name"
+            placeholder="Enter Username"
             value={user.name}
             name="name"
             onChange={(e) => handleChange(e)}
