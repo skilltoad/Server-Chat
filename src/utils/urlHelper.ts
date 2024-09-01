@@ -1,4 +1,4 @@
-export const HOST = "http://server-chat-backend.vercel.app";
+export const HOST = "https://server-chat-backend.vercel.app";
 
 export const REGISTER = `${HOST}/api/auth/register`;
 export const LOGIN = `${HOST}/api/auth/`;
